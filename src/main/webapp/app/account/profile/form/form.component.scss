@@ -1,0 +1,44 @@
+@import '../../../../WEB-INF/mixins.scss';
+
+.nav-link {
+  color: black;
+
+  &.active {
+    font-weight: 500;
+
+    &:hover {
+      border-color: #dee2e6 #dee2e6 #fff !important;
+      text-decoration: none;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    text-decoration: underline;
+  }
+}
+
+.main-form-container {
+  display: flex;
+  flex-direction: column;
+  // height: calc(100vh - 170px);
+  height: 100%;
+
+  .nav-tabs {
+    flex: 0 0 auto;
+  }
+
+  .form-container {
+    flex: 1;
+    overflow-y: auto;
+    @include scrollBar(vertical, rgb(211, 211, 211), rgb(148, 148, 148), 10px);
+  }
+}
+
+li.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+}

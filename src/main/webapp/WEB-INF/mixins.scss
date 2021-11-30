@@ -1,0 +1,70 @@
+@mixin verticalButtons() {
+  &::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAAA0ElEQVRIie3NPQrCMACG4TfVigWv4ODiMZycvE1AjyA4FHoPR4/g6hEEXTyCIihtHJTiT3+S2DhI3v37HvD5/i1hM5JSRoRRDMD1PE2S5OwcllJGdLorlBg/DtZBdpnEcXxyBr+jTyfGuDZchtriWnAdaoPXwrqoKV4Jm6ImeClsi+rihfC3qA7+ATeF1uEvcNNoFZ7DrtAyXPwCLcIDAMLuwjUKoGCUtjpzgDssROoazXGlUoA2wGG3nfUHw6XKRM8lKgJ1POy3G5eGz+f7XTfFWYg57w79OAAAAABJRU5ErkJggg==')
+      no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-button:single-button:vertical:increment {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAAA10lEQVRIie3RPw4BQRSA8W9mNU4hHITQu4ZWRCISdJsgNugdwwGchE04hMo+hT8F1s4sI5HMV768vF/xwOfz+f4tBdDpDVogS6Do2DsqJe35dLzSAIjUfoACFBFqABogED0E9j+A9zoJRnc4isJYn1QViB2ih4LoRhSFMVx/fKvbHZSSQDZA2QFan83C7W2gHjcc4E/oS/jL+Es0Ff4Snoq+hT/E36KZcE48EzWCLXEj1Bg2xI1RKzgDt0Kt4RTcGs0FA3T6/Qqi15cLSXMxmezy3PH5nHQGxNx6oQKL4KkAAAAASUVORK5CYII=')
+      no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: transparent;
+  }
+}
+
+@mixin horizontalButtons() {
+  &::-webkit-scrollbar-button:single-button:horizontal:decrement {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAAA+ElEQVRIicXUMQ7CMAwF0O+UiUOAyklAYuIG3ALUDpXKWgFDgZ2ZKzAhwUlA5RBMNGHpSEua2MWjJftJiW3gT0EcTeJ4FWpVZiBcd9v10aZG+aLLJBmVSt8MaG4MHWzrvOAoSofQ6gJgUKX64nAUpUMdmCuA0KXeCfZFnWAOtDXMhbaCOVFrmBu1giXQn7AU2ghLorWwNFoL6545S6K1cBfxFVZvmgF4dA7neVaokiaSeO1TS+ONfyyJ/xwuKdxqqiVw63XixlvtMSfe+oBw4U6XiwN3Ppm+uNetzvOsgNJTAM8q9eoEBoD9ZnMPtBoTzInILHz7iccHLqR+NrRxnoEAAAAASUVORK5CYII=')
+      no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-button:single-button:horizontal:increment {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAAA7UlEQVRIicXXMQrCMBQG4D+lKbQO3sUDuDl7EodAQcfOBelZXEToHbxLl0Za7HPqJJgm76X+0xt++BIIPAL8KcpVqKoq7exQKyClwZ6bprEScOIqdP24A8EQ4UQ6vxlj8lVgSlQxzwo4KJ0/yrLcRIe/DgLspyS7c3FvWAoPgiXwYJiLs2AOzoZDcRE4BBeDfXFR2AcXh5fiUeAZfydZvTrsSswbtxhtuSpMQKtGe/y1u2O8aicqDi9FRWEfVAz2RUXgEJQNh6IsmIMGw1w0CJZAF8Fqol4aBYDUVdgW+tn1wxUgrcbXReoL87d8AGI4obFVcGbEAAAAAElFTkSuQmCC')
+      no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: transparent;
+  }
+}
+
+@mixin scrollBar($where, $color, $hoverColor, $size) {
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    border-radius: 7px;
+    background-color: $color !important;
+
+    &:hover {
+      background-color: $hoverColor !important;
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
+  @if $where==vertical {
+    @include verticalButtons();
+  } @else if $where==horizontal {
+    @include horizontalButtons();
+  } @else {
+    @include verticalButtons();
+    @include horizontalButtons();
+  }
+}

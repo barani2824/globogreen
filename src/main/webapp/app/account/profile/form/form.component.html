@@ -1,0 +1,32 @@
+<div class="main-form-container">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" (click)="onTabClick('basic-form')" [class.active]="currentTab === 'basic-form'">Basic
+        Details</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="onTabClick('personal-form')" [class.active]="currentTab === 'personal-form'"
+        [class.disabled]="!formDataService.isPersonalFormValid()">Personal
+        Details</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="onTabClick('pf-form')" [class.active]="currentTab === 'pf-form'"
+        [class.disabled]="!formDataService.isProvidentFundFormValid()">PF Details</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="onTabClick('form-f')" [class.active]="currentTab === 'form-f'"
+        [class.disabled]="!formDataService.isFormFValid()">Form F Details</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="onTabClick('form-i')" [class.active]="currentTab === 'form-i'"
+        [class.disabled]="!formDataService.isFormIValid()">Form I Details</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="onTabClick('form-q')" [class.active]="currentTab === 'form-q'"
+        [class.disabled]="!formDataService.isFormQValid()">Form Q Details</a>
+    </li>
+  </ul>
+  <div #form class="form-container py-2">
+    <router-outlet (activate)="componentAdded($event)"></router-outlet>
+  </div>
+</div>

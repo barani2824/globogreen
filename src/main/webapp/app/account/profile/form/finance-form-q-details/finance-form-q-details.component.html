@@ -1,0 +1,147 @@
+<form #formQ="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group-container col-lg-6 col-md-8 col-sm-12 mx-auto p-3">
+        <h4 class="text-center">Form Q</h4>
+        <h5 class="text-center">Appointment Order</h5>
+        <div class="main-details">
+            <div class="form-group">
+                <label for="inputNameOfEstablishment">Name Of the Establishment</label>
+                <input #nameOfEstablishment="ngModel" [(ngModel)]="form.nameOfEstablishment" name="nameOfEstablishment"
+                    type="text" minlength="3" class="form-control" id="inputNameOfEstablishment" readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputaddressOfEstablishment">Address of the Establishment</label>
+                <textarea #addressOfEstablishment="ngModel" [(ngModel)]="form.addressOfEstablishment"
+                    name="addressOfEstablishment" type="text" class="form-control" id="inputaddressOfEstablishment"
+                    readonly></textarea>
+            </div>
+            <div class="form-group">
+                <label for="inputNameOfEmployer">Name Of the Employer</label>
+                <input #nameOfEmployer="ngModel" [(ngModel)]="form.nameOfEmployer" name="nameOfEmployer" type="text"
+                    class="form-control" minlength="3" id="inputNameOfEmployer" readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputAddressOfEmployer">Address of the Employer</label>
+                <textarea #addressOfEmployer="ngModel" [(ngModel)]="form.addressOfEmployer" name="addressOfEmployer"
+                    type="text" class="form-control" id="inputAddressOfEmployer" readonly></textarea>
+            </div>
+            <div class="form-group">
+                <label for="inputNameOfEmployee">Name Of the Employee</label>
+                <input #nameOfEmployee="ngModel" [(ngModel)]="form.fullname" name="nameOfEmployee" type="text"
+                    class="form-control" id="inputNameOfEmployee" readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputPostalAddress">Postal Address<span class="text-danger">*</span></label>
+                <textarea #postalAddress="ngModel" [(ngModel)]="form.postalAddress.shortAddress" name="postalAddress"
+                    type="text" class="form-control" id="inputPostalAddress" maxlength="160" required></textarea>
+                <div class="errors" *ngIf="postalAddress.touched && postalAddress.invalid">
+                    <p *ngIf="postalAddress?.errors?.required" class="warning text-danger">Please fill the 'Present
+                        Address' field.
+                    </p>
+                </div>
+                <label for="inputPostalAddressPincode">Pincode<span class="text-danger">*</span></label>
+                <input #postalAddressPincode="ngModel" [(ngModel)]="form.postalAddress.pincode"
+                    name="postalAddressPincode" type="text" class="form-control" id="inputPostalAddressPincode"
+                    required>
+                <div class="errors" *ngIf="postalAddressPincode.touched && postalAddressPincode.invalid">
+                    <p *ngIf="postalAddressPincode?.errors?.required" class="warning text-danger">Please fill the
+                        'Pincode' field.
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPermanentAddress">Permanent Address<span class="text-danger">*</span></label>
+                <textarea #permanentAddress="ngModel" [(ngModel)]="form.permanentAddress.shortAddress"
+                    name="permanentAddress" type="text" class="form-control" id="inputPermanentAddress" maxlength="160"
+                    readonly></textarea>
+                <label for="inputPermanentAddressPincode">Pincode</label>
+                <input #permanentAddressPincode="ngModel" [(ngModel)]="form.permanentAddress.pincode"
+                    name="permanentAddressPincode" type="text" class="form-control" id="inputPermanentAddressPincode"
+                    readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputFatherOrSpouse">Father/Spouse Name</label>
+                <input #fatherORSpouse="ngModel" [(ngModel)]="form.fatherOrSpouseName" name="fatherOrSpouse" type="text"
+                    minlength="3" class="form-control" id="inputFatherOrSpouse" required>
+                <div class="errors" *ngIf="(fatherORSpouse.touched && fatherORSpouse.invalid)">
+                    <p *ngIf="fatherORSpouse?.errors?.required" class="warning text-danger">Please fill the Appropriate
+                        name.
+                    </p>
+                    <p *ngIf="fatherORSpouse?.errors?.minlength" class="warning text-danger">Name should have atleast
+                        {{ fatherORSpouse?.errors?.minlength.requiredLength }} characters.
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputDateOfBirth">Date Of Birth</label>
+                <input #dateOfBirth="ngModel" [(ngModel)]="form.dateOfBirth" name="dateOfBirth" type="date"
+                    class="form-control" id="inputDateOfBirth" readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputDateOfAppointment">Date of entry into Employment</label>
+                <input #dateOfAppointment="ngModel" [(ngModel)]="form.dateOfAppointment" name="dateOfAppointment"
+                    type="date" class="form-control" id="inputDateOfAppointment" readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputNatureOfWorkEntrusted">Nature of work Entrusted<span
+                        class="text-danger">*</span></label>
+                <input #natureOfWorkEntrusted="ngModel" [(ngModel)]="form.natureOfWorkEntrusted"
+                    name="natureOfWorkEntrusted" type="text" class="form-control" id="inputNatureOfWorkEntrusted"
+                    required>
+                <div class="errors" *ngIf="natureOfWorkEntrusted.touched && natureOfWorkEntrusted.invalid">
+                    <p *ngIf="natureOfWorkEntrusted?.errors?.required" class="warning text-danger">Please fill the
+                        'Nature Of Work
+                        Entrusted' field.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputSerialNumber">Serial number in the register of Employment<span
+                        class="text-danger">*</span></label>
+                <input #serialNumber="ngModel" [(ngModel)]="form.serialNumber" name="serialNumber" type="text"
+                    class="form-control" id="inputSerialNumber" required>
+                <div class="errors" *ngIf="serialNumber.touched && serialNumber.invalid">
+                    <p *ngIf="serialNumber?.errors?.required" class="warning text-danger">Please fill the 'Serial
+                        Number' field.</p>
+                </div>
+            </div>
+            <h6>Rate of wages payable</h6>
+            <div class="form-group rate-wage-container">
+                <label for="inputBasic">Basic<span class="text-danger">*</span></label>
+                <div class="input-container">
+                    <input #basic="ngModel" [(ngModel)]="form.rateOfWage.basic" name="basic" type="number"
+                        class="form-control" id="inputBasic" required>
+                    <div class="errors" *ngIf="basic.touched && basic.invalid">
+                        <p *ngIf="basic?.errors?.required" class="warning text-danger">Please enter the 'Basic Wage'.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group rate-wage-container">
+                <label for="inputVDA">VDA<span class="text-danger">*</span></label>
+                <div class="input-container">
+                    <input #vda="ngModel" [(ngModel)]="form.rateOfWage.vda" name="vda" type="number"
+                        class="form-control" id="inputVDA" required>
+                    <div class="errors" *ngIf="vda.touched && vda.invalid">
+                        <p *ngIf="vda?.errors?.required" class="warning text-danger">Please enter the 'VDA Wage'.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group rate-wage-container">
+                <label for="inputOtherAllowances">Other Allowances</label>
+                <div class="input-container">
+                    <input #otherAllowances="ngModel" [(ngModel)]="form.rateOfWage.otherAllowances"
+                        name="otherAllowances" type="number" class="form-control" id="inputOtherAllowances">
+                </div>
+            </div>
+            <div class="form-group rate-wage-container">
+                <label for="inputTotal">Total</label>
+                <div class="input-container">
+                    <input #total="ngModel" [(ngModel)]="form.rateOfWage.total" name="total" type="number"
+                        class="form-control" id="inputTotal" readonly>
+                </div>
+            </div>
+            <button [disabled]="formQ.invalid" type="button" class="btn btn-info float-left"
+                (click)="onPrevious()">Previous</button>
+            <button [disabled]="formQ.invalid" type="submit" class="btn btn-info float-right">Submit</button>
+        </div>
+    </div>
+</form>

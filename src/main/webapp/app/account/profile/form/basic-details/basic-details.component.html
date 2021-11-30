@@ -1,0 +1,92 @@
+<form #basicForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-group-container col-lg-7 col-md-9 col-sm-11 mx-auto p-3">
+    <h4 class="text-center">Basic Details Form</h4>
+    <div class="form-wrapper">
+      <div class="main-details">
+        <div class="form-group">
+          <label for="inputFirstName">First Name<span class="text-danger">*</span></label>
+          <input #firstname="ngModel" [(ngModel)]="form.firstname" name="firstname" type="text" class="form-control"
+            id="inputFirstname" minlength="3" required>
+          <div class="errors" *ngIf="firstname.touched && firstname.invalid">
+            <p *ngIf="firstname?.errors?.required" class="warning text-danger">Please fill the 'firstname' field.</p>
+            <p *ngIf="firstname?.errors?.minlength" class="warning text-danger">Firstname must have atleast
+              {{ firstname?.errors?.minlength?.requiredLength }} characters.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputlastName">Last Name</label>
+          <input #lastName="ngModel" [(ngModel)]="form.lastname" name="lastName" type="text" class="form-control"
+            id="inputLastName">
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">Address<span class="text-danger">*</span></label>
+          <textarea #address="ngModel" [(ngModel)]="form.address.shortAddress" name="address" type="text"
+            class="form-control" id="inputAddress" maxlength="100" required></textarea>
+          <div class="errors" *ngIf="address.touched && address.invalid">
+            <p *ngIf="address?.errors?.required" class="warning text-danger">Please fill the 'Address' field.</p>
+          </div>
+          <label for="inputAddressPincode">Pincode<span class="text-danger">*</span></label>
+          <input #addressPincode="ngModel" [(ngModel)]="form.address.pincode" name="addressPincode" type="text"
+            class="form-control" id="inputAddressPincode" required>
+          <div class="errors" *ngIf="addressPincode.touched && addressPincode.invalid">
+            <p *ngIf="addressPincode?.errors?.required" class="warning text-danger">Please fill the 'Pincode' field.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputEmployeeCode">Employee Code<span class="text-danger">*</span></label>
+          <input #employeeCode="ngModel" [(ngModel)]="form.employeeCode" name="employeeCode" type="text"
+            class="form-control" id="inputEmployeeCode" required>
+          <div class="errors" *ngIf="employeeCode.touched && employeeCode.invalid">
+            <p *ngIf="employeeCode?.errors?.required" class="warning text-danger">Please enter the 'Employee Code'.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="selectBloodGroup">Blood Group<span class="text-danger">*</span></label>
+          <select #bloodGroup="ngModel" [(ngModel)]="form.bloodGroup" name="bloodGroup" class="form-control"
+            id="selectBloodGroup" required>
+            <option *ngFor="let bloodGroup of bloodGroups | keyvalue" [value]="bloodGroup.key">{{ bloodGroup.value }}
+            </option>
+          </select>
+          <div class="errors" *ngIf="bloodGroup.touched && bloodGroup.invalid">
+            <p *ngIf="bloodGroup?.errors?.required" class="warning text-danger">Please select your 'BloodGroup'.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputDateOfBirth">Date of Birth<span class="text-danger">*</span></label>
+          <input #dateOFBirth="ngModel" [(ngModel)]="form.dateOfBirth" name="dateOfBirth" type="date"
+            class="form-control" id="inputDateOfBirth" required>
+          <div class="errors" *ngIf="dateOFBirth.touched && dateOFBirth.invalid">
+            <p *ngIf="dateOFBirth?.errors?.required" class="warning text-danger">Please fill the 'Date of Birth' field.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="image-section">
+        <div class="image-container">
+          <label for="inputPhoto" class="image-preview" jhiDragAndDrop (fileDropped)="onPhotoDropped($event)">
+            <img [src]="photoUrl ? (photoUrl | safeResourceUrl) : defaultUrl" alt="Profile Photo">
+            <div *ngIf="!form.photo">
+              <div class="content">
+                Drag and drop
+                <br>
+                <span class="font-weight-bold">or</span>
+                <br>
+                Browse
+              </div>
+            </div>
+          </label>
+          <input #photo="ngModel" ngModel name="photo" type="file" class="custom-file-input" id="inputPhoto"
+            (change)="onPhotoSelect($event)" style="display: none;" accept=".png, .jpg, .jpeg">
+          <small *ngIf="form.photo" class="text-center text-truncate">{{ filename }}</small>
+          <div class="errors" *ngIf="photo.dirty || basicForm.valid">
+            <p *ngIf="!form.photo" class="warning text-danger">Please add your 'Photo'.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="button-container">
+        <button [disabled]="basicForm.invalid || !form.photo" type="submit"
+            class="btn btn-info float-right">Next</button>
+    </div>
+  </div>
+</form>

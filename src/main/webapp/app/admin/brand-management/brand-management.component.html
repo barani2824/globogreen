@@ -1,0 +1,43 @@
+<div class="justify-content-center" style="margin-bottom: 1em;">
+    <div class="col-7">
+        <h2 id="myUserLabel">
+            Create or update Brand
+        </h2>
+        <button type="button" (click)="showBrandTextBox();" class="btn btn-primary" style="margin-bottom: 6px;">Add brand</button>
+        <div class="form-group" style="display: inline-flex;width: 10em;margin-bottom: 0px;">
+            <input type="text" [(ngModel)]="brand.brandName" *ngIf="showBrand" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter brandName">
+        </div>
+
+        <p-fileUpload *ngIf="showBrand" name="demo[]" (onUpload)="onUpload($event)" [multiple]="isMultipleUpload" accept="image/*" [maxFileSize]="maxSize">
+            <ng-template pTemplate="content">
+                <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                </ul>
+            </ng-template>
+        </p-fileUpload>
+        <button type="button" [disabled]="!brand.brandName" (click)="addBrand();" style="margin-top: 8px;" *ngIf="showBrand" class="btn btn-outline-success">Save brand</button>
+
+    </div>
+    <div class="col-5">
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let user of brandList;" (click)="addBrand()">
+                <span class="badge bg-success">{{user.brandName}}</span>
+                <span class="badge bg-primary rounded-pill">14</span>
+            </li>
+
+        </ul>
+    </div>
+    <div class="col-8">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let user of brandList;" (click)="addModel()">
+                <span class="badge bg-success">ModelName</span>
+                <span class="badge bg-primary rounded-pill">14</span>
+            </li>
+
+        </ul>
+    </div>
+</div>

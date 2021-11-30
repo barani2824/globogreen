@@ -1,0 +1,141 @@
+<form #formI="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group-container col-lg-6 col-md-8 col-sm-12 mx-auto p-3">
+        <h4 class="text-center">Form I</h4>
+        <h5 class="text-center">[See sub-rule (1) of rule 3]</h5>
+        <h5 class="text-center">Nomination</h5>
+        <div class="main-details">
+            <div class="form-group">
+                <label for="inputName">Name</label>
+                <input [value]="displayFullName()" name="name" type="text" class="form-control" id="inputname" readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputNoOfNominees">No of Nominee(s)<span class="text-danger">*</span></label>
+                <input #noOFNominees="ngModel" [(ngModel)]="noOfNominees" name="noOfNominees" type="number"
+                    class="form-control" id="inputNoOfNominees" required min="1" value="1" max="2">
+                <div class="errors" *ngIf="noOFNominees.touched && noOFNominees.invalid">
+                    <p *ngIf="noOFNominees?.errors?.required" class="warning text-danger">Please enter the 'No of
+                        Nominees'.</p>
+                </div>
+                <p *ngIf="noOfNominees < 1" class="warning text-danger">Add Atleast one Nominee.</p>
+                <p *ngIf="noOfNominees > 2 " class="warning text-danger">No of Nominees can't be more than 2.</p>
+            </div>
+            <div class="table-container" *ngIf="noOfNominees && noOfNominees <= 2">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center" scope="col" style="width: 5%;">#</th>
+                            <th class="text-center" scope="col" style="width: 25%;">Name</th>
+                            <th class="text-center" scope="col" style="width: 25%;">Address</th>
+                            <th class="text-center" scope="col" style="width: 25%;">Relationship With You</th>
+                            <th class="text-center" scope="col" style="width: 20%;">Age</th>
+                        </tr>
+                    </thead>
+                    <tbody ngModelGroup="nominees" #nominees="ngModelGroup">
+                        <tr *ngFor="let index of noOfNominees | numberToArray">
+                            <td>{{ index + 1 }}</td>
+                            <td>
+                                <input [name]="'nomineeName'+index" [(ngModel)]="form.nominees[index].name" type="text"
+                                    class="form-control" required>
+                            </td>
+                            <td>
+                                <textarea [name]="'nomineeAddress'+index" [(ngModel)]="form.nominees[index].address"
+                                    type="text" class="form-control" maxlength="80" required></textarea>
+                            </td>
+                            <td>
+                                <input [name]="'nomineeRelationWithYou'+index"
+                                    [(ngModel)]="form.nominees[index].relationshipWithYou" type="text"
+                                    class="form-control" required>
+                            </td>
+                            <td>
+                                <input [name]="'nomineeAge'+index" [(ngModel)]="form.nominees[index].age" type="number"
+                                    class="form-control" required>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="errors table-error" *ngIf="nominees.invalid">
+                    <p class="warning text-danger">Please fill the all the fields.
+                    </p>
+                </div>
+            </div>
+            <br>
+            <br>
+            <hr>
+            <h6 class="text-center">Statement</h6>
+            <div class="form-group">
+                <label for="inputNameOfEmployee">Name Of the Employee</label>
+                <input [value]="displayFullName()" name="nameOfEmployee" type="text" class="form-control"
+                    id="inputNameOfEmployee" readonly>
+            </div>
+            <div class="form-group">
+                <label>Sex</label>
+                <br>
+                <div class="form-check form-check-inline">
+                    <input #gender="ngModel" [(ngModel)]="form.gender" class="form-check-input" type="radio"
+                        name="gender" id="inlineGender1" value="Female" disabled>
+                    <label class="form-check-label" for="inlineGender1">Female</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input #gender="ngModel" [(ngModel)]="form.gender" class="form-check-input" type="radio"
+                        name="gender" id="inlineGender2" value="Male" disabled>
+                    <label class="form-check-label" for="inlineGender2">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input #gender="ngModel" [(ngModel)]="form.gender" class="form-check-input" type="radio"
+                        name="gender" id="inlineGender3" value="Other" disabled>
+                    <label class="form-check-label" for="inlineGender3">Other</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputReligion">Religion</label>
+                <input #religion="ngModel" [(ngModel)]="form.religion" name="religion" type="text" class="form-control"
+                    id="inputReligion" readonly>
+            </div>
+            <div class="form-group">
+                <label for="selectMaritialStatus">Marital Status</label>
+                <select #maritalStatus="ngModel" [(ngModel)]="form.maritalStatus" name="maritalStatus"
+                    class="form-control" id="selectMaritialStatus" readonly>
+                    <option *ngFor="let maritalStatus of maritalStatuses | keyvalue" [value]="maritalStatus.key">
+                        {{ maritalStatus.value }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inputDepartmentOrBranch">Department/Branch/Section where employed</label>
+                <input #departmentOrBranch="ngModel" [(ngModel)]="form.department" name="departmentOrBranch" type="text"
+                    class="form-control" id="inputDepartmentOrBranch" readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputTicketNoOrSerialNo">Post held with Ticket No. or Serial No. if any</label>
+                <input #ticketNoOrSerialNo="ngModel" [(ngModel)]="form.ticketNumber" name="ticketNoOrSerialNo"
+                    type="text" class="form-control" id="inputTicketNoOrSerialNo" readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputDOEIntoEmployment">Date Of Appointment</label>
+                <input #dateOfAppointment="ngModel" [(ngModel)]="form.dateOfAppointment" name="dateOfAppointment"
+                    type="date" class="form-control" id="inputDOEIntoEmployment" readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputPresentAddress">Present Address<span class="text-danger">*</span></label>
+                <textarea #presentAddress="ngModel" [(ngModel)]="form.presentAddress.shortAddress" name="presentAddress"
+                    type="text" class="form-control" id="inputPresentAddress" maxlength="160" readonly></textarea>
+                <label for="inputpresentAddressPincode">Pincode</label>
+                <input #presentAddressPincode="ngModel" [(ngModel)]="form.presentAddress.pincode"
+                    name="presentAddressPincode" type="text" class="form-control" id="inputpresentAddressPincode"
+                    readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputPermanentAddress">Permanent Address<span class="text-danger">*</span></label>
+                <textarea #permanentAddress="ngModel" [(ngModel)]="form.permanentAddress.shortAddress"
+                    name="permanentAddress" type="text" class="form-control" id="inputPermanentAddress" maxlength="160"
+                    readonly></textarea>
+                <label for="inputPermanentAddressPincode">Pincode</label>
+                <input #permanentAddressPincode="ngModel" [(ngModel)]="form.permanentAddress.pincode"
+                    name="permanentAddressPincode" type="text" class="form-control" id="inputPermanentAddressPincode"
+                    readonly>
+            </div>
+            <button [disabled]="formI.invalid" type="button" class="btn btn-info float-left"
+                (click)="onPrevious()">Previous</button>
+            <button [disabled]="formI.invalid" type="submit" class="btn btn-info float-right">Next</button>
+        </div>
+    </div>
+</form>

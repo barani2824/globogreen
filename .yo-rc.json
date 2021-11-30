@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.kdi.onboardinghelper"
+    },
+    "jhipsterVersion": "6.9.0",
+    "applicationType": "monolith",
+    "baseName": "OnboardingHelper",
+    "packageName": "com.kdi.onboardinghelper",
+    "packageFolder": "com/kdi/onboardinghelper",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MDZjM2VjYWFkNmU4ZDUzYmI3ZjEwNGNkZTZhODNlMzhmODAzYTRjZjQ5MzVkNzg5YmU0ZGQ1ZGJjNTFhOWQxODQwYWNlOWM1YTU5MGE2ZmFhNDIwNDg4ZmUyOThjYTBhMzAwMGYxNTQ5M2UxODg2OGRhNmZmOWNmNTgyNzFjZjY=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1590392694474,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}

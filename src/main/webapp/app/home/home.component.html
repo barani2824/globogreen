@@ -1,0 +1,45 @@
+<div class="row content-section implementation">
+    <div class="col-md-3">
+        <span class="hipster img-fluid rounded"></span>
+    </div>
+
+    <div class="col-md-9">
+        <h1 class="display-4">Welcome, Globo Green</h1>
+
+        <div [ngSwitch]="isAuthenticated()">
+            <div class="alert alert-success" *ngSwitchCase="true">
+                <span id="home-logged-message" *ngIf="account">You are logged in as user "{{ account.login }}".</span>
+            </div>
+
+            <div class="alert alert-warning" *ngSwitchCase="false">
+                <span>If you want to </span>
+                <a class="alert-link" (click)="login()">sign in</a>
+            </div>
+
+            <div class="alert alert-warning" *ngSwitchCase="false">
+                <span>You don't have an account yet?</span>&nbsp;
+                <a class="alert-link" routerLink="account/register">Register a new account</a>
+            </div>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Customer Email</th>
+                        <th scope="col">Delivery Date</th>
+                        <th scope="col">Order Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-active" *ngFor="let user of orders;">
+                        <td>{{ user.customerName }}</td>
+                        <td>{{ user.customerEmail }}</td>
+                        <td>{{ user.estimatedDeliveryTime }}</td>
+                        <td><button type="button" class="btn btn-outline-success">Completed</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

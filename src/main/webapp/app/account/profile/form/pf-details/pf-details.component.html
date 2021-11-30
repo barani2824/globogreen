@@ -1,0 +1,227 @@
+<form #pfForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group-container col-lg-6 col-md-8 col-sm-12 mx-auto p-3">
+        <h4 class="text-center">Provident Fund Details Form</h4>
+        <div class="main-details">
+            <div class="form-group">
+                <label for="inputName">Name of the Member</label>
+                <input [value]="displayFullName()" name="name" type="text" class="form-control" id="inputName" readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputFatherOrSpouseName">Father/Spouse Name</label>
+                <input #fatherORSpouse="ngModel" [(ngModel)]="form.fatherOrSpouseName" name="fatherOrSpouse" type="text"
+                    minlength="3" class="form-control" id="inputFatherOrSpouse" required>
+                <div class="errors" *ngIf="(fatherORSpouse.touched && fatherORSpouse.invalid)">
+                    <p *ngIf="fatherORSpouse?.errors?.required" class="warning text-danger">Please fill the Appropriate
+                        name.
+                    </p>
+                    <p *ngIf="fatherORSpouse?.errors?.minlength" class="warning text-danger">Name should have atleast
+                        {{ fatherORSpouse?.errors?.minlength?.requiredLength }} characters.
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Gender</label>
+                <br>
+                <div class="form-check form-check-inline">
+                    <input #gender="ngModel" [(ngModel)]="form.gender" class="form-check-input" type="radio"
+                        name="gender" id="inlineGender1" value="Female" disabled>
+                    <label class="form-check-label" for="inlineGender1">Female</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input #gender="ngModel" [(ngModel)]="form.gender" class="form-check-input" type="radio"
+                        name="gender" id="inlineGender2" value="Male" disabled>
+                    <label class="form-check-label" for="inlineGender2">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input #gender="ngModel" [(ngModel)]="form.gender" class="form-check-input" type="radio"
+                        name="gender" id="inlineGender3" value="Other" disabled>
+                    <label class="form-check-label" for="inlineGender3">Other</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="selectMaritialStatus">Marital Status</label>
+                <select #maritalStatus="ngModel" [(ngModel)]="form.maritalStatus" name="maritalStatus"
+                    class="form-control" id="selectMaritialStatus" readonly>
+                    <option *ngFor="let maritalStatus of maritalStatuses | keyvalue" [value]="maritalStatus.key">
+                        {{ maritalStatus.value }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Email (Personal)<span class="text-danger">*</span></label>
+                <input #email="ngModel" [(ngModel)]="form.email" name="email" type="text" class="form-control"
+                    id="inputEmail" required>
+                <div class="errors" *ngIf="email.touched && email.invalid">
+                    <p *ngIf="email?.errors?.required" class="warning text-danger">Please enter the 'Email'.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputMobileNo">Mobile No<span class="text-danger">*</span></label>
+                <input #phone="ngModel" [(ngModel)]="form.phone" name="phone" type="text" class="form-control"
+                    id="inputMobileNo" required>
+                <div class="errors" *ngIf="phone.touched && phone.invalid">
+                    <p *ngIf="phone?.errors?.required" class="warning text-danger">Please enter the 'Mobile No'.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Whether earlier a member of Employee's Provident Fund Scheme, 1952<span
+                        class="text-danger">*</span></label>
+                <br>
+                <div class="form-check form-check-inline">
+                    <input #isEarlierMemberOfPFScheme="ngModel" [(ngModel)]="form.isEarlierMemberOfPFScheme"
+                        class="form-check-input" type="radio" name="isEarlierMemberOfPFScheme"
+                        id="inlineIsEarlierMemberOfPFScheme1" [value]="true">
+                    <label class="form-check-label" for="inlineIsEarlierMemberOfPFScheme1">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input #isEarlierMemberOfPFScheme="ngModel" [(ngModel)]="form.isEarlierMemberOfPFScheme"
+                        class="form-check-input" type="radio" name="isEarlierMemberOfPFScheme"
+                        id="inlineIsEarlierMemberOfPFScheme2" [value]="false">
+                    <label class="form-check-label" for="inlineIsEarlierMemberOfPFScheme2">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Whether earlier a member of EMployee's Pension Scheme, 1952<span
+                        class="text-danger">*</span></label>
+                <br>
+                <div class="form-check form-check-inline">
+                    <input #isEarlierMemberOfPScheme="ngModel" [(ngModel)]="form.isEarlierMemberOfPScheme"
+                        class="form-check-input" type="radio" name="isEarlierMemberOfPScheme"
+                        id="inlineIsEarlierMemberOfPScheme1" [value]="true">
+                    <label class="form-check-label" for="inlineIsEarlierMemberOfPScheme1">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input #isEarlierMemberOfPScheme="ngModel" [(ngModel)]="form.isEarlierMemberOfPScheme"
+                        class="form-check-input" type="radio" name="isEarlierMemberOfPScheme"
+                        id="inlineIsEarlierMemberOfPScheme2" [value]="false">
+                    <label class="form-check-label" for="inlineIsEarlierMemberOfPScheme2">No</label>
+                </div>
+            </div>
+            <div class="previous-emp-details-section"
+                *ngIf="form.isEarlierMemberOfPFScheme || form.isEarlierMemberOfPScheme">
+                <hr>
+                <h6 class="text-center">Previous employment details:</h6>
+                <div class="form-group">
+                    <label for="inputPEUniversalAccountNumber">Universal Account Number<span
+                            class="text-danger">*</span></label>
+                    <input #pEUniversalAccountNumber="ngModel"
+                        [(ngModel)]="form.previousEmployment.universalAccountNumber" name="pEUniversalAccountNumber"
+                        type="text" class="form-control" id="inputPEUniversalAccountNumber" required>
+                    <div class="errors" *ngIf="pEUniversalAccountNumber.touched && pEUniversalAccountNumber.invalid">
+                        <p *ngIf="pEUniversalAccountNumber?.errors?.required" class="warning text-danger">Please fill
+                            your Universal
+                            Account Number.</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPEPFNumber">Previous PF Account Number<span class="text-danger">*</span></label>
+                    <input #pEPFNumber="ngModel" [(ngModel)]="form.previousEmployment.pFAccountNumber" name="pEPFNumber"
+                        type="text" class="form-control" id="inputPEPFNumber" required>
+                    <div class="errors" *ngIf="pEPFNumber.touched && pEPFNumber.invalid">
+                        <p *ngIf="pEPFNumber?.errors?.required" class="warning text-danger">Please fill your Previous
+                            Account Number.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputDateOfExit">Date Of exit from previous emplyment<span
+                            class="text-danger">*</span></label>
+                    <input #dateOfExitFromPE="ngModel" [(ngModel)]="form.previousEmployment.dateOfExit"
+                        name="dateOfExitFromPE" type="date" class="form-control" id="inputDateOfExit" required>
+                    <div class="errors" *ngIf="dateOfExitFromPE.touched && dateOfExitFromPE.invalid">
+                        <p *ngIf="dateOfExitFromPE?.errors?.required" class="warning text-danger">Please fill the 'Date
+                            of Exit'
+                            field.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputSchemeNo">Scheme Certificale No (If Issued)</label>
+                    <input [(ngModel)]="form.previousEmployment.schemeCertificateNumber" name="schemeNo" type="text"
+                        class="form-control" id="inputSchemeNo">
+                </div>
+                <div class="form-group">
+                    <label for="inputPPONumber">Pension Payment Order (PPO) No (If Issued)</label>
+                    <input [(ngModel)]="form.previousEmployment.pensionPaymentOrderNumber" name="ppoNumber" type="text"
+                        class="form-control" id="inputPPONumber">
+                </div>
+                <div class="form-group">
+                    <label>International Worker<span class="text-danger">*</span></label>
+                    <br>
+                    <div class="form-check form-check-inline">
+                        <input #internationalWorker="ngModel"
+                            [(ngModel)]="form.previousEmployment.isInternationalWorker" class="form-check-input"
+                            type="radio" name="internationalWorker" id="inlineInternationalWorker1" [value]="true">
+                        <label class="form-check-label" for="inlineInternationalWorker1">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input #internationalWorker="ngModel"
+                            [(ngModel)]="form.previousEmployment.isInternationalWorker" class="form-check-input"
+                            type="radio" name="internationalWorker" id="inlineInternationalWorker2" [value]="false">
+                        <label class="form-check-label" for="inlineInternationalWorker2">No</label>
+                    </div>
+                </div>
+                <div class="form-group" *ngIf="form.previousEmployment.isInternationalWorker">
+                    <label for="inputCountry">If Yes, State country of Origin.<span class="text-danger">*</span></label>
+                    <input #country="ngModel" [(ngModel)]="form.previousEmployment.country" name="country" type="text"
+                        class="form-control" id="inputCountry" required>
+                    <div class="errors" *ngIf="country.touched && country.invalid">
+                        <p *ngIf="country?.errors?.required" class="warning text-danger">Please fill the 'State Country'
+                            field.</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassportNumber">Passport Number</label>
+                    <input #passportNumber="ngModel" [(ngModel)]="form.previousEmployment.passportNumber"
+                        name="passportNumber" type="text" class="form-control" id="inputPassportNumber" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="inputDOI">Date Of Issue</label>
+                    <input #dateOfIssue="ngModel" [(ngModel)]="form.previousEmployment.dateOfIssue" name="dateOfIssue"
+                        type="date" class="form-control" id="inputDOI" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="inputDOE">Date Of Expiry</label>
+                    <input #dateOfExpiry="ngModel" [(ngModel)]="form.previousEmployment.dateOfExpiry"
+                        name="dateOfExpiry" type="date" class="form-control" id="inputDOE" readonly>
+                </div>
+            </div>
+            <div class="kyc-details">
+                <hr>
+                <h6 class="text-center">KYC details:</h6>
+                <div class="form-group">
+                    <label for="inputAccountNumber">Bank Account Number<span class="text-danger">*</span></label>
+                    <input #accountNumber="ngModel" [(ngModel)]="form.accountNumber" name="accountNumber" type="text"
+                        class="form-control" id="inputAccountNumber" required>
+                    <div class="errors" *ngIf="accountNumber.touched && accountNumber.invalid">
+                        <p *ngIf="accountNumber?.errors?.required" class="warning text-danger">Please fill the 'Account
+                            Number' field.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputIFSCcCode">IFSC Code<span class="text-danger">*</span></label>
+                    <input #ifscCode="ngModel" [(ngModel)]="form.ifscCode" name="ifscCode" type="text"
+                        class="form-control" id="inputIFSCCode" required>
+                    <div class="errors" *ngIf="ifscCode.touched && ifscCode.invalid">
+                        <p *ngIf="ifscCode?.errors?.required" class="warning text-danger">Please fill the 'IFSC Code'
+                            field.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAadharNumber">Aadhar Card No</label>
+                    <input #aadharNumber="ngModel" [(ngModel)]="form.aadharNumber" name="aadharNumber" type="text"
+                        class="form-control" id="inputAadharNumber" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="inputPanNumber">PAN Card No (If Available)</label>
+                    <input #panNumber="ngModel" [(ngModel)]="form.panNumber" name="panNumber" type="text"
+                        class="form-control" id="inputPanNumber" readonly>
+                </div>
+            </div>
+            <button [disabled]="pfForm.invalid" type="button" class="btn btn-info float-left"
+                (click)="onPrevious()">Previous</button>
+            <button [disabled]="pfForm.invalid" type="submit" class="btn btn-info float-right">Next</button>
+        </div>
+    </div>
+</form>

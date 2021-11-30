@@ -1,0 +1,122 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="myUserLabel">
+                Create or update Order
+            </h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+
+
+                <div class="form-group">
+                    <label class="form-control-label">Customer name</label>
+                    <input type="text" class="form-control" name="customerName" formControlName="customerName">
+
+                    <div *ngIf="editForm.get('customerName')!.invalid && (editForm.get('customerName')!.dirty || editForm.get('customerName')!.touched)">
+                        <small class="form-text text-danger" *ngIf="editForm.get('customerName')?.errors?.required">
+                            This field is required.
+                        </small>
+
+                        <small class="form-text text-danger" *ngIf="editForm.get('customerName')?.errors?.maxlength">
+                            This field cannot be longer than 50 characters.
+                        </small>
+
+                        <small class="form-text text-danger" *ngIf="editForm.get('customerName')?.errors?.pattern">
+                            This field can only contain letters, digits and e-mail addresses.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label">Customer mobile number</label>
+                    <input type="text" class="form-control" name="customerMobileNumber" formControlName="customerMobileNumber">
+
+                    <div *ngIf="editForm.get('customerMobileNumber')!.invalid && (editForm.get('customerMobileNumber')!.dirty || editForm.get('customerMobileNumber')!.touched)">
+                        <small class="form-text text-danger" *ngIf="editForm.get('customerMobileNumber')?.errors?.maxlength">
+                            This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Repair description</label>
+                    <input type="text" class="form-control" name="repairDetails" formControlName="repairDetails">
+
+                    <div *ngIf="editForm.get('repairDetails')!.invalid && (editForm.get('repairDetails')!.dirty || editForm.get('repairDetails')!.touched)">
+                        <small class="form-text text-danger" *ngIf="editForm.get('repairDetails')?.errors?.maxlength">
+                            This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label">Email</label>
+                    <input type="email" class="form-control" name="email" formControlName="customerEmail">
+
+                    <div *ngIf="editForm.get('customerEmail')!.invalid && (editForm.get('customerEmail')!.dirty || editForm.get('customerEmail')!.touched)">
+                        <small class="form-text text-danger" *ngIf="editForm.get('customerEmail')?.errors?.required">
+                            This field is required.
+                        </small>
+
+                        <small class="form-text text-danger" *ngIf="editForm.get('customerEmail')?.errors?.maxlength">
+                            This field cannot be longer than 100 characters.
+                        </small>
+
+                        <small class="form-text text-danger" *ngIf="editForm.get('customerEmail')?.errors?.minlength">
+                            This field is required to be at least 5 characters.
+                        </small>
+
+                        <small class="form-text text-danger" *ngIf="editForm.get('customerEmail')?.errors?.email">
+                            Your email is invalid.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Mobile Brand</label>
+                    <input type="text" class="form-control" name="mobileBrand" formControlName="mobileBrand">
+
+                </div>
+                <div class="form-group">
+                    <label>Mobile Model</label>
+                    <input type="text" class="form-control" name="mobileModel" formControlName="mobileModel">
+
+                </div>
+                <div class="form-group">
+                    <label>Estimated Cost</label>
+                    <input type="text" class="form-control" name="estimatedCost" formControlName="estimatedCost">
+
+                </div>
+                <div class="form-group">
+                    <label>Estimated Delivery </label>
+                    <input type="date" class="form-control" name="estimatedDeliveryTime" formControlName="estimatedDeliveryTime">
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label" for="hasDisplayScratch">
+                        <input class="form-check-input"
+                               type="checkbox" id="hasDisplayScratch" name="hasDisplayScratch" formControlName="hasDisplayScratch">
+                        <span>Has display crack</span>
+                    </label>
+                </div>
+
+                <!-- <div class="form-group">
+                    <label>Profiles</label>
+                    <select class="form-control" multiple name="authority" formControlName="authorities">
+                        <option *ngFor="let authority of authorities" [value]="authority">{{ authority }}</option>
+                    </select>
+                </div> -->
+            </div>
+
+            <div style="margin-bottom: 3em;">
+                <button type="button" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

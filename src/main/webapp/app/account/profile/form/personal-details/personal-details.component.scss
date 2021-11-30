@@ -1,0 +1,24 @@
+@import '../../../../../WEB-INF/mixins.scss';
+
+.warning {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.table-container {
+  overflow-x: auto;
+  @include scrollBar(horizontal, rgb(211, 211, 211), rgb(148, 148, 148), 9px);
+
+  table {
+    width: max-content;
+  }
+
+  .table > tbody > tr > td {
+    vertical-align: middle;
+  }
+
+  .table-error {
+    position: absolute;
+    transform: translateY(30px);
+  }
+}

@@ -1,0 +1,14 @@
+.list-group {
+    .list-group-item:hover {
+        cursor: pointer;
+        background: rgb(179, 245, 179) !important;
+        color: black;
+    }
+    .p-fileupload {
+        display: inline-flex;
+    }
+}
+
+.p-fileupload-buttonbar {
+    margin: 1em 0em !important;
+}

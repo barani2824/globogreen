@@ -1,0 +1,309 @@
+<form #personalForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group-container col-lg-6 col-md-8 col-sm-12 mx-auto p-3">
+        <h4 class="text-center">Personal Details Form</h4>
+        <div class="main-details">
+            <div class="form-group">
+                <label for="selectBloodGroup">Title<span class="text-danger">*</span></label>
+                <select #title="ngModel" [(ngModel)]="form.title" name="title" class="form-control" id="selectTitle">
+                    <option *ngFor="let title of titles | keyvalue" [value]="title.key">{{ title.value }}</option>
+                </select>
+                <div class="errors" *ngIf="title.touched && title.invalid">
+                    <p *ngIf="title?.errors?.required" class="warning text-danger">Please select your 'Title'.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputFirstName">FirstName</label>
+                <input #firstname="ngModel" [(ngModel)]="form.firstname" name="firstname" type="text"
+                    class="form-control" id="inputFirstName" readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputLastName">LastName</label>
+                <input #lastname="ngModel" [(ngModel)]="form.lastname" name="lastname" type="text" class="form-control"
+                    id="inputLastName" readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputGender">Gender<span class="text-danger">*</span></label>
+                <br>
+                <div class="form-check form-check-inline">
+                    <input #gender="ngModel" [(ngModel)]="form.gender" class="form-check-input" type="radio"
+                        name="gender" id="inlineRadio1" value="Female">
+                    <label class="form-check-label" for="inlineRadio1">Female</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input #gender="ngModel" [(ngModel)]="form.gender" class="form-check-input" type="radio"
+                        name="gender" id="inlineRadio2" value="Male">
+                    <label class="form-check-label" for="inlineRadio2">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input #gender="ngModel" [(ngModel)]="form.gender" class="form-check-input" type="radio"
+                        name="gender" id="inlineRadio3" value="Other">
+                    <label class="form-check-label" for="inlineRadio3">Other</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputNationality">Nationality<span class="text-danger">*</span></label>
+                <input #nationality="ngModel" [(ngModel)]="form.nationality" name="nationality" type="text"
+                    class="form-control" id="inputNationality" required>
+                <div class="errors" *ngIf="nationality.touched && nationality.invalid">
+                    <p *ngIf="nationality?.errors?.required" class="warning text-danger">Please fill the 'Nationality'
+                        field.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassportNumber">Passport Number<span class="text-danger">*</span></label>
+                <input #passportNumber="ngModel" [(ngModel)]="form.passportNumber" name="passportNumber" type="text"
+                    minlength="9" maxlength="9" class="form-control" id="inputPassportNumber" required>
+                <div class="errors" *ngIf="passportNumber.touched && passportNumber.invalid">
+                    <p *ngIf="passportNumber?.errors?.required" class="warning text-danger">Please fill the 'Passport
+                        Number' field.
+                    </p>
+                    <p *ngIf="passportNumber?.errors?.minlength || passportNumber?.errors?.maxlength"
+                        class="warning text-danger">
+                        Please enter a valid Passort number having
+                        {{ passportNumber?.errors?.minlength.requiredLength  }} characters.
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPlaceOfPassportIssue">Place of Passport Issue<span class="text-danger">*</span></label>
+                <input #placeOfPassportIssue="ngModel" [(ngModel)]="form.placeOfPassportIssue"
+                    name="placeOfPassportIssue" type="text" class="form-control" id="inputPlaceOfPassportIssue"
+                    required>
+                <div class="errors" *ngIf="placeOfPassportIssue.touched && placeOfPassportIssue.invalid">
+                    <p *ngIf="placeOfPassportIssue?.errors?.required" class="warning text-danger">Please fill the 'Place
+                        of Passport
+                        Issue' field.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputDOI">Date Of Issue<span class="text-danger">*</span></label>
+                <input #dateOfIssue="ngModel" [(ngModel)]="form.dateOfIssue" name="dateOfIssue" type="date"
+                    class="form-control" id="inputDOI" required>
+                <div class="errors" *ngIf="dateOfIssue.touched && dateOfIssue.invalid">
+                    <p *ngIf="dateOfIssue?.errors?.required" class="warning text-danger">Please fill the 'Date of Issue'
+                        field.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputDOE">Date Of Expiry<span class="text-danger">*</span></label>
+                <input #dateOfExpiry="ngModel" [(ngModel)]="form.dateOfExpiry" name="dateOfExpiry" type="date"
+                    class="form-control" id="inputDOE" required>
+                <div class="errors" *ngIf="dateOfExpiry.touched && dateOfExpiry.invalid">
+                    <p *ngIf="dateOfExpiry?.errors?.required" class="warning text-danger">Please fill the 'Date of
+                        Expiry' field.
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="selectMaritialStatus">Marital Status<span class="text-danger">*</span></label>
+                <select #maritalStatus="ngModel" [(ngModel)]="form.maritalStatus" name="maritalStatus"
+                    class="form-control" id="selectMaritialStatus">
+                    <option *ngFor="let maritalStatus of maritalStatuses | keyvalue" [value]="maritalStatus.key">
+                        {{ maritalStatus.value }}</option>
+                </select>
+                <div class="errors" *ngIf="maritalStatus.touched && maritalStatus.invalid">
+                    <p *ngIf="maritalStatus?.errors?.required" class="warning text-danger">Please select your 'Marital
+                        Status'.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputDateOfBirth">Date of Birth</label>
+                <input #dateOfBirth="ngModel" [(ngModel)]="form.dateOfBirth" name="dateOfBirth" type="date"
+                    class="form-control" id="inputDateOfBirth" readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputPOB">Place of Birth<span class="text-danger">*</span></label>
+                <input #placeOfBirth="ngModel" [(ngModel)]="form.placeOfBirth" name="placeOfBirth" type="text"
+                    class="form-control" id="inputPOB" required>
+                <div class="errors" *ngIf="placeOfBirth.touched && placeOfBirth.invalid">
+                    <p *ngIf="placeOfBirth?.errors?.required" class="warning text-danger">Please fill the 'Place of
+                        Birth' field.
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAadharNumber">Aadhar Card No<span class="text-danger">*</span></label>
+                <input #aadharNumber="ngModel" [(ngModel)]="form.aadharNumber" name="aadharNumber" type="text"
+                    minlength="12" maxlength="12" class="form-control" id="inputAadharNumber" required>
+                <div class="errors" *ngIf="aadharNumber.touched && aadharNumber.invalid">
+                    <p *ngIf="aadharNumber?.errors?.required" class="warning text-danger">Please fill the 'Aadhar Card
+                        Number'
+                        field.</p>
+                    <p *ngIf="aadharNumber?.errors?.minlength || aadharNumber?.errors?.maxlength"
+                        class="warning text-danger">
+                        Please enter a valid Aadhar number having {{ aadharNumber?.errors?.minlength.requiredLength  }}
+                        characters.
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPanNumber">PAN Card No<span class="text-danger">*</span></label>
+                <input #panNumber="ngModel" [(ngModel)]="form.panNumber" name="panNumber" type="text"
+                    class="form-control" minlength="10" maxlength="10" id="inputPanNumber" required>
+                <div class="errors" *ngIf="panNumber.touched && panNumber.invalid">
+                    <p *ngIf="panNumber?.errors?.required" class="warning text-danger">Please fill the 'PAN Card No'
+                        field.</p>
+                    <p *ngIf="panNumber?.errors?.minlength || panNumber?.errors?.maxlength" class="warning text-danger">
+                        Please enter a valid PAN number having {{ panNumber?.errors?.minlength.requiredLength  }}
+                        characters.
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPresentAddress">Present Address<span class="text-danger">*</span></label>
+                <textarea #presentAddress="ngModel" [(ngModel)]="form.presentAddress.shortAddress" name="presentAddress"
+                    type="text" class="form-control" id="inputPresentAddress" maxlength="200" required></textarea>
+                <div class="errors" *ngIf="presentAddress.touched && presentAddress.invalid">
+                    <p *ngIf="presentAddress?.errors?.required" class="warning text-danger">Please fill the 'Present
+                        Address' field.
+                    </p>
+                </div>
+                <label for="inputPresentAddressPincode">Pincode<span class="text-danger">*</span></label>
+                <input #presentAddressPincode="ngModel" [(ngModel)]="form.presentAddress.pincode"
+                    name="presentAddressPincode" type="text" class="form-control" id="inputPresentAddressPincode"
+                    required>
+                <div class="errors" *ngIf="presentAddressPincode.touched && presentAddressPincode.invalid">
+                    <p *ngIf="presentAddressPincode?.errors?.required" class="warning text-danger">Please fill the
+                        'Pincode' field.
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPermanentAddress">Permanent Address<span class="text-danger">*</span></label>
+                <textarea #permanentAddress="ngModel" [(ngModel)]="form.permanentAddress.shortAddress"
+                    name="permanentAddress" type="text" class="form-control" id="inputPermanentAddress" maxlength="200"
+                    readonly></textarea>
+                <label for="inputPermanentAddressPincode">Pincode</label>
+                <input #permanentAddressPincode="ngModel" [(ngModel)]="form.permanentAddress.pincode"
+                    name="permanentAddressPincode" type="text" class="form-control" id="inputPermanentAddressPincode"
+                    readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Email (Personal)</label>
+                <input #email="ngModel" [(ngModel)]="form.email" name="email" type="text" class="form-control"
+                    id="inputEmail" readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputMobileNo">Mobile No<span class="text-danger">*</span></label>
+                <input #phone="ngModel" [(ngModel)]="form.phones[0].number" name="phone" type="text"
+                    class="form-control" id="inputMobileNo" required>
+                <div class="errors" *ngIf="phone.touched && phone.invalid">
+                    <p *ngIf="phone?.errors?.required" class="warning text-danger">Please enter the 'Mobile No'.</p>
+                </div>
+            </div>
+            <hr>
+            <h6 class="text-center">Dependents Informations</h6>
+            <div class="form-group">
+                <label for="inputNoOfDependents">No of Dependents<span class="text-danger">*</span></label>
+                <input #noOFDependents="ngModel" [(ngModel)]="noOfDependents" name="noOfDependents" type="number"
+                    class="form-control" id="inputNoOfDependents" required min="1" value="1" max="2">
+                <div class="errors" *ngIf="noOFDependents.touched && noOFDependents.invalid">
+                    <p *ngIf="noOFDependents?.errors?.required" class="warning text-danger">Please enter the 'No of
+                        Dependents'.</p>
+                </div>
+                <p *ngIf="noOfDependents > 2" class="warning text-danger">No of Dependents can't be more than 2.</p>
+                <p *ngIf="noOfDependents < 1" class="warning text-danger">Add Atleast one Dependent.</p>
+            </div>
+            <div class="table-container" *ngIf="noOfDependents && noOfDependents <= 2">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center" scope="col" style="width: 5%;">#</th>
+                            <th class="text-center" scope="col" style="width: 25%;">Name</th>
+                            <th class="text-center" scope="col" style="width: 20%;">Relationship</th>
+                            <th class="text-center" scope="col" style="width: 30%;">Date of Birth</th>
+                            <th class="text-center" scope="col" style="width: 20%;">Age</th>
+                        </tr>
+                    </thead>
+                    <tbody ngModelGroup="dependents" #dependents="ngModelGroup">
+                        <tr *ngFor="let index of noOfDependents | numberToArray">
+                            <td>{{ index + 1 }}</td>
+                            <td>
+                                <input [name]="'dependentName'+index" [(ngModel)]="form.dependents[index].name"
+                                    type="text" class="form-control" required>
+                            </td>
+                            <td>
+                                <input [name]="'dependentRelationshipWithYou'+index"
+                                    [(ngModel)]="form.dependents[index].relationshipWithYou" type="text"
+                                    class="form-control" required>
+                            </td>
+                            <td>
+                                <input [name]="'dependentDOB'+index" [(ngModel)]="form.dependents[index].dateOfBirth"
+                                    type="date" class="form-control" required>
+                            </td>
+                            <td>
+                                <input [name]="'dependentAge'+index" [(ngModel)]="form.dependents[index].age"
+                                    type="number" class="form-control" required>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="errors table-error" *ngIf="dependents.invalid">
+                    <p class="warning text-danger">Please fill the all the fields.
+                    </p>
+                </div>
+            </div>
+            <br>
+            <br>
+            <hr>
+            <h6 class="text-center">Emergency Contacts</h6>
+            <ng-container *ngFor="let index of 2 | numberToArray">
+                <h6 class="text-left">Emergency Contact {{ index + 1 }}:</h6>
+                <div class="form-group">
+                    <label [for]="'inputEmergencyName'+index">Name<span class="text-danger">*</span></label>
+                    <input #emergencyContactName="ngModel" [(ngModel)]="form.emergencyContacts[index].name"
+                        [name]="'emergencyName'+index" type="text" class="form-control"
+                        [id]="'inputEmergencyName'+index" minLength="3" required>
+                    <div class="errors" *ngIf="emergencyContactName.touched && emergencyContactName.invalid">
+                        <p *ngIf="emergencyContactName?.errors?.required" class="warning text-danger">Please fill the
+                            'Name' field.
+                        </p>
+                        <p *ngIf="emergencyContactName?.errors?.minlength" class="warning text-danger">Name should have
+                            alteast
+                            {{emergencyContactName?.errors?.minlength.requiredLength}} characters.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label [for]="'inputEmergencyAddress'+index">Address<span class="text-danger">*</span></label>
+                    <textarea #emergencyContactAddress="ngModel" [(ngModel)]="form.emergencyContacts[index].address"
+                        [name]="'emergencyAddress'+index" type="text" class="form-control"
+                        [id]="'inputEmergencyAddress'+index" maxlength="160" required></textarea>
+                    <div class="errors" *ngIf="emergencyContactAddress.touched && emergencyContactAddress.invalid">
+                        <p *ngIf="emergencyContactAddress?.errors?.required" class="warning text-danger">Please fill the
+                            'Address'
+                            field.</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label [for]="'inputEmergencyRelationshipToYou'+index">Relationship To You<span
+                            class="text-danger">*</span></label>
+                    <input #emergencyContactRelationshipToYou="ngModel"
+                        [(ngModel)]="form.emergencyContacts[index].relationshipWithYou"
+                        [name]="'emergencyRelationshipToYou'+index" type="text" class="form-control"
+                        [id]="'inputEmergencyRelationshipToYou'+index" required>
+                    <div class="errors"
+                        *ngIf="emergencyContactRelationshipToYou.touched && emergencyContactRelationshipToYou.invalid">
+                        <p *ngIf="emergencyContactRelationshipToYou?.errors?.required" class="warning text-danger">
+                            Please fill the
+                            'Relationship to you' field.</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label [for]="'inputEmergencyMobile'+index">Mobile No<span class="text-danger">*</span></label>
+                    <input #emergencyContactMobile="ngModel" [(ngModel)]="form.emergencyContacts[index].phone"
+                        [name]="'emergencyMobile'+index" type="text" class="form-control"
+                        [id]="'inputEmergencyMobile'+index" required>
+                    <div class="errors" *ngIf="emergencyContactMobile.touched && emergencyContactMobile.invalid">
+                        <p *ngIf="emergencyContactMobile?.errors?.required" class="warning text-danger">Please fill the
+                            'Mobile
+                            No' field.</p>
+                    </div>
+                </div>
+            </ng-container>
+            <button [disabled]="personalForm.invalid" type="button" class="btn btn-info float-left"
+                (click)="onPrevious()">Previous</button>
+            <button [disabled]="personalForm.invalid" type="submit" class="btn btn-info float-right">Next</button>
+        </div>
+    </div>
+</form>

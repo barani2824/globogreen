@@ -1,0 +1,165 @@
+<div>
+    <div class="row justify-content-center">
+       <h5>Person Details Form</h5>
+
+       <div class="container" >
+         <form name="form" role="form" (ngSubmit)="finishReset()" [formGroup]="profileForm">
+        <table class="table table-striped">
+           <tbody>
+              <tr>
+                 <td colspan="1">
+
+                       <fieldset>
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">First Name</label>
+                             <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input id="fullName" name="fullName" placeholder="Full Name" class="form-control" formControlName="firstName" type="text"></div>
+                             </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Gender</label>
+                            <div class="col-md-8 inputGroupContainer">
+                               <div class="input-group">
+                                  <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-list"></i></span>
+                                  <select class="selectpicker form-control" formControlName="gender">
+                                     <option>Male</option>
+                                     <option>Female</option>
+                                  </select>
+                               </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Passport Number</label>
+                             <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="addressLine2" name="addressLine2" placeholder="Passport Number" formControlName="passportNumber" class="form-control"  value="" type="text"></div>
+                             </div>
+                          </div>
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Date of Issue</label>
+                             <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="city" name="city" placeholder="City" formControlName="passportIssuedDate" class="form-control"  type="date"></div>
+                             </div>
+                          </div>
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Marital Status</label>
+                             <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                   <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-list"></i></span>
+                                   <select class="selectpicker form-control" formControlName="maritalStatus">
+                                      <option>Single</option>
+                                      <option>Married</option>
+                                      <option>Divorced</option>
+                                      <option>Other </option>
+                                   </select>
+                                </div>
+                             </div>
+                          </div>
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Date of Birth</label>
+                             <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="postcode" name="postcode" placeholder="DOB" class="form-control" formControlName="dob" type="date"></div>
+                             </div>
+                          </div>
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Aadhar Card</label>
+                             <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="addressLine2" name="addressLine2" placeholder="Aadhar Card" class="form-control" formControlName="aadhar" value="" type="text"></div>
+                             </div>
+                          </div>
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Email</label>
+                             <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input id="email" name="email" placeholder="Email" class="form-control" formControlName="email" value="" type="text"></div>
+                             </div>
+                          </div>
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Phone Number</label>
+                             <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span><input id="phoneNumber" name="phoneNumber" placeholder="Phone Number" formControlName="phoneNumber" class="form-control"  value="" type="number"></div>
+                             </div>
+                          </div>
+                       </fieldset>
+
+                 </td>
+                 <td colspan="1">
+
+                       <fieldset>
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Last Name</label>
+                             <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input id="fullName" name="fullName" placeholder="Full Name" class="form-control" formControlName="lastName" value="" type="text"></div>
+                             </div>
+                          </div>
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Nationality</label>
+                             <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="addressLine1" name="addressLine1" placeholder="Nationality" class="form-control" formControlName="nationality" value="" type="text"></div>
+                             </div>
+                          </div>
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Place of  Issue</label>
+                             <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="placeOfIssue" name="placeOfIssue" placeholder="Place" class="form-control" formControlName="placeOfIssue" value="" type="text"></div>
+                             </div>
+                          </div>
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Date of Expiry</label>
+                             <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="daeOfExpiry" name="daeOfExpiry" placeholder="Date of Expiry" class="form-control" formControlName="daeOfExpiry" value="" type="date"></div>
+                             </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Place of  Birth</label>
+                            <div class="col-md-8 inputGroupContainer">
+                               <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="placeOfBirth" name="placeOfBirth" placeholder="Place of birth" class="form-control" formControlName="placeOfBirth" value="" type="text"></div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">PAN Card No</label>
+                             <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="pan" name="pan" placeholder="PAN No" class="form-control" formControlName="pan" value="" type="text"></div>
+                             </div>
+                          </div>
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Present Address</label>
+                             <div class="col-md-8 inputGroupContainer">
+                              <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="presentAddress" name="presentAddress" placeholder="Present Address" class="form-control" formControlName="presentAddress" value="" type="text"></div>
+                           </div>
+                          </div>
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Present Pincode</label>
+                             <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input id="presentPin" name="presentPin" placeholder="pincode" formControlName="presentPin" class="form-control"  value="" type="text"></div>
+                             </div>
+                          </div>
+                          <div class="form-group">
+                             <label class="col-md-4 control-label">Permenant Address</label>
+                             <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span><input id="permenantAddress" name="permenantAddress" placeholder="Permenant Address" formControlName="permenantAddress" class="form-control" value="" type="text"></div>
+                             </div>
+                          </div>
+                          <div class="form-group">
+                           <label class="col-md-4 control-label">Permenant Pincode  </label>
+                           <div class="col-md-8 inputGroupContainer">
+                              <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input id="email" name="email" placeholder="pincode" class="form-control" formControlName="permenantPin" value="" type="text"></div>
+                           </div>
+                        </div>
+                       </fieldset>
+
+                 </td>
+              </tr>
+            <tr><td colspan="2"><button type="button" (click)="finishReset();" [disabled]="!profileForm.valid">Submit Application</button></td></tr>
+           </tbody>
+
+        </table>
+      </form>
+     </div>
+        </div>
+        <div class="alert alert-success" *ngIf="success">
+         <strong>Password changed!</strong>
+     </div>
+
+     <div class="alert alert-danger" *ngIf="error">
+         <strong>An error has occurred!</strong> The password could not be changed.
+     </div>
+</div>
